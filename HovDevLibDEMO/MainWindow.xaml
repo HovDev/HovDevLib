@@ -1,0 +1,26 @@
+﻿<Window x:Class="HovDevLibDEMO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dialog="clr-namespace:HovDevLib.Dialogs;assembly=HovDevLib"
+        xmlns:local="clr-namespace:HovDevLibDEMO"
+        mc:Ignorable="d"
+        Title="HovDevLib DEMO" Height="350" Width="525" WindowStartupLocation="CenterScreen"
+        Closing="MainWindow_OnClosing">
+    <Grid>
+        <Grid x:Name="Root">
+            <Button x:Name="BtModalDialog" Content="ModalDialog" HorizontalAlignment="Left" Margin="10,10,0,0"
+                    VerticalAlignment="Top" Width="120" Click="BModalDialog_Click" />
+            <Button x:Name="BtToShowWin" Content="ToShowWin" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120" Click="BtToShowWin_Click"/>
+            <Button x:Name="BtCenterWinDialog" Content="CenterWinDialog" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="120" Click="BtCenterWinDialog_Click"/>
+
+        </Grid>
+        <dialog:ModalDialog x:Name="Mdlg" ParentElement="{Binding ElementName=Root}" YesTitle="Yes" NoTitle="No"
+                            CancelTitle="Cancel" ButtonHorizontalAlignment="Right" Message="My Text" Icon="Warning" />
+        <!--
+        But enough of this:
+        <dialog:ModalDialog x:Name="Mdlg" ParentElement="{Binding ElementName=Root}" />
+        -->
+    </Grid>
+</Window>

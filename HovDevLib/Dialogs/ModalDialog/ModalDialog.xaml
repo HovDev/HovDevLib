@@ -1,0 +1,46 @@
+﻿<UserControl x:Name="Root" x:Class="HovDevLib.Dialogs.ModalDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:HovDevLib.Dialogs"
+             xmlns:dialogs="clr-namespace:HovDevLib.Dialogs"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="{Binding BackgroundUnderlay, ElementName=Root}" Visibility="{Binding Visibility}">
+    <UserControl.Resources>
+        <local:ModalDialogIconVisibilityConverter x:Key="ModalDialogIconVisibilityConverter" />
+        <dialogs:ModalDialogConverters x:Key="ModalDialogIconConverter" />
+    </UserControl.Resources>
+    <Grid DataContext="{Binding ElementName=Root}" Margin="30">
+        <Border>
+            <Border BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1"
+                    CornerRadius="{Binding CornerRadius}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <Image x:Name="MessageIcon" Width="32" Height="32" Margin="5,0" HorizontalAlignment="Left"
+                               Source="{Binding Icon, Converter={StaticResource ModalDialogIconConverter}, ElementName=Root}"
+                               Visibility="{Binding Icon, Converter={StaticResource ModalDialogIconVisibilityConverter}, ElementName=Root}" VerticalAlignment="Top" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock x:Name="MessageTextBlock" Text="{Binding Message}" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0"/>
+                        </ScrollViewer>
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,15,3,0"
+                                HorizontalAlignment="{Binding ButtonHorizontalAlignment}" VerticalAlignment="Bottom">
+                        <Button x:Name="OkButton" Click="OkButton_Click" Content="Ok" Margin="2,0" MinWidth="50"
+                                IsDefault="True" />
+                        <Button x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" MinWidth="50"
+                                Margin="2,0" IsCancel="True" />
+                        <Button x:Name="Cancel2Button" Click="Cancel2Button_Click" Content="Cancel 2" MinWidth="50"
+                                Margin="2,0" IsCancel="True" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>
